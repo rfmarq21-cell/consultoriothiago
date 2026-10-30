@@ -7,6 +7,7 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
+
 $usuario_id =$_SESSION['usuario_id'];
 $primeiro_nome = explode(' ', trim($_SESSION['usuario_nome']))[0];
 
