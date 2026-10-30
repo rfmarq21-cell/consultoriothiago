@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Agendamento | Dr. Thiago Salomão</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="[https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap](https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap)" rel="stylesheet">
+    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
+</head>
+<body>
+
+    <header>
+        <div class="container header-container">
+            <div class="logo-wrapper">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-text">
+                        <h1>Dr. Thiago Salomão</h1>
+                        <span>Clínica Médica & Nutrologia</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="menu-mobile-icon" id="menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav id="navbar">
+                <ul class="nav-links">
+                    <li><a href="index.html">Página Inicial</a></li>
+                    <li><a href="#novo-agendamento">Novo Agendamento</a></li>
+                    <li><a href="#meus-agendamentos">Meus Agendamentos</a></li>
+                    <li><a href="logout.php" class="link-logout">Sair da Conta</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="novo-agendamento" class="agendamento-page">
+        <div class="container">
+            <div class="secao-titulo">
+                <h2>Olá, Paciente!</h2>
+                <p>Escolha uma das datas e horários disponíveis liberados pela clínica para agendar sua consulta.</p>
+            </div>
+
+            <div class="form-container">
+                <form action="processa_agendamento.php" method="POST" class="agendamento-form">
+                    <div class="form-group">
+                        <label for="especialidade">Tipo de Atendimento *</label>
+                        <select id="especialidade" name="especialidade" class="form-control" required>
+                            <option value="" disabled selected>Selecione o serviço desejado</option>
+                            <option value="Clínica Médica">Clínica Médica (Check-up)</option>
+                            <option value="Nutrologia">Nutrologia (Emagrecimento/Metabolismo)</option>
+                            <option value="Performance">Performance e Hipertrofia</option>
+                            <option value="Retorno">Retorno de Consulta</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="data">Datas Disponíveis *</label>
+                            <select id="data" name="data_consulta" class="form-control" required>
+                                <option value="" disabled selected>Selecione uma data</option>
+                                <option value="2026-10-20">20 de Outubro, 2026</option>
+                                <option value="2026-10-21">21 de Outubro, 2026</option>
+                                <option value="2026-10-25">25 de Outubro, 2026</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="horario">Horários Disponíveis *</label>
+                            <select id="horario" name="horario_consulta" class="form-control" required>
+                                <option value="" disabled selected>Selecione um horário</option>
+                                <option value="09:00">09:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="14:00">14:00</option>
+                                <option value="16:30">16:30</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="observacoes">Observações (Opcional)</label>
+                        <textarea id="observacoes" name="observacoes" class="form-control" rows="4" placeholder="Algum detalhe que o Dr. Thiago precise saber antes da consulta?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit">Confirmar Agendamento</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="meus-agendamentos" class="meus-agendamentos-section">
+        <div class="container">
+            <div class="secao-titulo">
+                <h2>Meus Agendamentos</h2>
+                <p>Acompanhe abaixo o histórico e o status das suas consultas solicitadas.</p>
+            </div>
+
+            <div class="agendamentos-lista">
+                <div class="card-agendamento-item">
+                    <div class="agendamento-info">
+                        <h3>Nutrologia (Emagrecimento/Metabolismo)</h3>
+                        <p><i class="far fa-calendar-alt"></i> 20 de Outubro, 2026 às 09:00</p>
+                        <p><i class="fas fa-map-marker-alt"></i> The Mall Villa Bella - Sala 50, Campinas - SP</p>
+                    </div>
+                    <div class="agendamento-acoes">
+                        <span class="status-badge status-confirmado">Confirmado</span>
+                    </div>
+                </div>
+
+                <div class="card-agendamento-item">
+                    <div class="agendamento-info">
+                        <h3>Performance e Hipertrofia</h3>
+                        <p><i class="far fa-calendar-alt"></i> 25 de Outubro, 2026 às 14:00</p>
+                        <p><i class="fas fa-map-marker-alt"></i> The Mall Villa Bella - Sala 50, Campinas - SP</p>
+                    </div>
+                    <div class="agendamento-acoes">
+                        <span class="status-badge status-agendado">Aguardando Confirmação</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-text">
+                <p>&copy; 2026 Dr. Thiago Salomão. Todos os direitos reservados.</p>
+                <p>Desenvolvido por Rafael Marques Fernandes</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuIcon = document.getElementById('menu-icon');
+        const navbar = document.getElementById('navbar');
+        const linksMenu = document.querySelectorAll('.nav-links li a');
+
+        menuIcon.addEventListener('click', () => {
+            navbar.classList.toggle('ativo');
+        });
+
+        linksMenu.forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('ativo');
+            });
+        });
+    </script>
+</body>
+</html>

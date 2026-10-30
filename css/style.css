@@ -1,0 +1,995 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #222222;
+    --secondary-color: #E65C00;
+    --whatsapp-color: #25D366;
+    --text-color: #4A4A4A;
+    --light-bg: #F5F5F5;
+    --white: #FFFFFF;
+    
+    --error-color: #D93025;
+    --success-color: #1E8E3E;
+    --warning-color: #F9AB00;
+    
+    --font-title: 'Playfair Display', serif;
+    --font-text: 'Montserrat', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+section[id] {
+    scroll-margin-top: 90px;
+}
+
+body {
+    color: var(--text-color);
+    background-color: var(--light-bg);
+    font-family: var(--font-text);
+}
+
+body.auth-body {
+    background-color: var(--light-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px 0;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-title);
+    font-weight: 600;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Topo e Navegação */
+header {
+    background-color: var(--white);
+    border-bottom: 1px solid #E0E0E0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    text-decoration: none;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text h1 {
+    font-size: 24px;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+.logo-text span {
+    font-size: 11px;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.menu-mobile-icon {
+    display: none;
+    font-size: 26px;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.menu-btn-mobile {
+    display: none;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+.nav-links a.link-logout {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.nav-links a.link-logout:hover {
+    color: var(--primary-color);
+}
+
+/* Botões */
+.btn {
+    padding: 14px 28px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    display: inline-block;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: 1px solid var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-outline-whatsapp {
+    background-color: transparent;
+    color: var(--white);
+    border: 1px solid var(--white);
+}
+
+.btn-outline-whatsapp:hover {
+    background-color: var(--whatsapp-color);
+    border-color: var(--whatsapp-color);
+    color: var(--white);
+}
+
+/* Banner Principal */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(rgba(20, 20, 20, 0.7), rgba(20, 20, 20, 0.5)), url('../img/slide/fundo.jpg') top center/cover;
+    margin-top: 90px;
+    color: var(--white);
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero-content h2 {
+    font-size: 48px;
+    line-height: 1.2;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.hero-content p {
+    font-size: 16px;
+    margin-bottom: 40px;
+    line-height: 1.8;
+    font-weight: 300;
+    color: #F0F0F0;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.secao-titulo {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.secao-titulo h2 {
+    font-size: 36px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.secao-titulo h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: var(--secondary-color);
+}
+
+.secao-titulo p {
+    color: var(--text-color);
+    font-size: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Sobre */
+.sobre {
+    padding: 120px 0;
+    background-color: var(--white);
+}
+
+.sobre-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.sobre-img {
+    flex: 1;
+}
+
+.sobre-img img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 2px;
+    display: block;
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid #E0E0E0;
+}
+
+.sobre-texto {
+    flex: 1;
+}
+
+.sobre-texto h2 {
+    font-size: 40px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.sobre-texto .crm {
+    font-size: 13px;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.sobre-texto p {
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+/* Especialidades */
+.atuacao {
+    padding: 120px 0;
+    background-color: var(--light-bg);
+}
+
+.atuacao-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.card-atuacao {
+    background-color: var(--white);
+    padding: 50px 30px;
+    border-radius: 2px;
+    border: 1px solid #E0E0E0; 
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.card-atuacao:hover {
+    transform: translateY(-10px);
+    border-color: var(--secondary-color);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.03); 
+}
+
+.card-atuacao i {
+    font-size: 35px;
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+}
+
+.card-atuacao h3 {
+    font-size: 22px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.card-atuacao p {
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+/* FAQ */
+.duvidas {
+    padding: 120px 0;
+    background-color: var(--white);
+}
+
+.faq-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: start;
+    width: 100%;
+}
+
+.faq-item {
+    background-color: var(--white);
+    border: 1px solid #E0E0E0;
+    border-radius: 2px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.faq-item:hover {
+    border-color: var(--secondary-color);
+}
+
+.faq-pergunta {
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--light-bg);
+}
+
+.faq-pergunta h3 {
+    font-size: 16px;
+    color: var(--primary-color);
+    margin-right: 15px;
+    font-family: var(--font-text); 
+}
+
+.faq-pergunta i {
+    color: var(--secondary-color);
+    transition: transform 0.3s ease;
+}
+
+.faq-resposta {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 25px;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.faq-resposta p {
+    color: var(--text-color);
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.faq-item.ativo .faq-resposta {
+    max-height: 500px;
+    padding: 10px 25px 25px 25px;
+}
+
+.faq-item.ativo .faq-pergunta i {
+    transform: rotate(180deg);
+}
+
+/* Contato */
+.contato {
+    padding: 120px 0;
+    background-color: var(--light-bg);
+}
+
+.contato-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.contato-info h3 {
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+.contato-info p {
+    font-size: 15px;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.contato-info p i {
+    color: var(--secondary-color);
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+.redes-sociais {
+    margin-top: 40px;
+    display: flex;
+    gap: 15px;
+}
+
+.redes-sociais a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.redes-sociais a:hover {
+    background-color: var(--secondary-color);
+}
+
+.contato-mapa iframe {
+    border-radius: 2px;
+    border: 1px solid #E0E0E0 !important;
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 40px 0;
+    border-top: 4px solid var(--secondary-color);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-text p {
+    font-size: 13px;
+    margin: 8px 0;
+    font-weight: 300;
+    color: #CCCCCC;
+}
+
+.footer-social a {
+    color: var(--secondary-color);
+    font-size: 28px;
+    text-decoration: none;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.footer-social a:hover {
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+.whatsapp-flutuante {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--whatsapp-color);
+    color: var(--white);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: transform 0.3s;
+    text-decoration: none;
+}
+
+.whatsapp-flutuante:hover {
+    transform: scale(1.1);
+}
+
+/* Formulários e Área de Agendamento */
+.agendamento-page {
+    padding: 140px 0 80px;
+    background-color: var(--light-bg);
+}
+
+.form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: var(--white);
+    padding: 50px;
+    border-radius: 2px;
+    border: 1px solid #E0E0E0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.agendamento-form label {
+    display: block;
+    font-size: 14px;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px;
+    font-size: 14px;
+    font-family: var(--font-text);
+    color: var(--text-color);
+    background-color: #FAFAFA;
+    border: 1px solid #E0E0E0;
+    border-radius: 2px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    background-color: var(--white);
+    box-shadow: 0 0 0 3px rgba(230, 92, 0, 0.1);
+}
+
+.form-control.input-error {
+    border-color: var(--error-color);
+    background-color: #FFF8F7;
+}
+
+.error-msg {
+    color: var(--error-color);
+    font-size: 12px;
+    margin-top: 6px;
+    display: none;
+}
+
+.error-msg.visivel {
+    display: block;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-top: 4px;
+    accent-color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-color);
+    line-height: 1.5;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+.btn-submit {
+    width: 100%;
+    font-size: 15px;
+    padding: 18px;
+    margin-top: 10px;
+}
+
+/* Listagem e Cartões de Agendamento */
+.meus-agendamentos-section {
+    padding: 80px 0 100px;
+    background-color: var(--white);
+    border-top: 1px solid #E0E0E0;
+}
+
+.agendamentos-lista {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card-agendamento-item {
+    background-color: var(--light-bg);
+    border: 1px solid #E0E0E0;
+    border-left: 4px solid var(--secondary-color);
+    border-radius: 2px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.card-agendamento-item:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+}
+
+.agendamento-info h3 {
+    font-size: 20px;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.agendamento-info p {
+    font-size: 14px;
+    color: var(--text-color);
+    margin-bottom: 4px;
+    font-weight: 400;
+}
+
+.agendamento-info p i {
+    color: var(--secondary-color);
+    width: 18px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 2px;
+}
+
+.status-agendado {
+    background-color: rgba(249, 171, 0, 0.15);
+    color: #B06000;
+}
+
+.status-confirmado {
+    background-color: rgba(30, 142, 62, 0.15);
+    color: var(--success-color);
+}
+
+.status-cancelado {
+    background-color: rgba(217, 48, 37, 0.12);
+    color: var(--error-color);
+}
+
+.status-concluido {
+    background-color: #E8EAED;
+    color: #3C4043;
+}
+
+/* Tabelas e Painel Admin / Paciente */
+.admin-table-container {
+    background-color: var(--white);
+    border: 1px solid #E0E0E0;
+    border-radius: 2px;
+    padding: 25px;
+    overflow-x: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+}
+
+.admin-table th {
+    background-color: var(--light-bg);
+    color: var(--primary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 15px;
+    border-bottom: 2px solid #E0E0E0;
+}
+
+.admin-table td {
+    padding: 16px 15px;
+    border-bottom: 1px solid #EEEEEE;
+    vertical-align: middle;
+    line-height: 1.5;
+}
+
+.admin-table tbody tr:hover {
+    background-color: #FAFAFA;
+}
+
+.obs-texto {
+    font-size: 12px;
+    color: #777777;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.admin-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.admin-actions form {
+    margin: 0;
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-family: var(--font-text);
+    font-weight: 600;
+    border-radius: 3px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s, transform 0.2s;
+    color: var(--white);
+}
+
+.btn-action:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.btn-wpp {
+    background-color: var(--whatsapp-color);
+}
+
+.btn-confirm {
+    background-color: var(--success-color);
+}
+
+.btn-cancel {
+    background-color: var(--error-color);
+}
+
+/* Autenticação */
+.auth-container {
+    background-color: var(--white);
+    width: 100%;
+    max-width: 550px;
+    padding: 50px;
+    border-radius: 2px;
+    border: 1px solid #E0E0E0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.auth-header h1 {
+    font-size: 20px;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+.auth-header span {
+    font-size: 9px;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.auth-header h2 {
+    font-size: 26px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.auth-header p {
+    font-size: 14px;
+    color: var(--text-color);
+    font-weight: 300;
+}
+
+.auth-footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.auth-footer a {
+    color: var(--secondary-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.auth-footer a:hover {
+    color: var(--primary-color);
+}
+
+.auth-footer a.link-voltar {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.auth-footer a.link-voltar:hover {
+    color: var(--secondary-color);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .header-container {
+        flex-wrap: wrap;
+    }
+
+    .menu-mobile-icon {
+        display: block;
+    }
+
+    .btn-agendar-header {
+        display: none;
+    }
+
+    nav {
+        display: none;
+        width: 100%;
+        background-color: var(--white);
+        position: absolute;
+        top: 90px;
+        left: 0;
+        border-top: 1px solid #E0E0E0;
+        border-bottom: 1px solid #E0E0E0;
+    }
+
+    nav.ativo {
+        display: block; 
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .nav-links li {
+        text-align: center;
+        border-bottom: 1px solid #F5F5F5;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 20px;
+        font-size: 13px;
+    }
+
+    .menu-btn-mobile {
+        display: block;
+        padding: 25px 0;
+        border-bottom: 1px solid #E0E0E0;
+        background-color: var(--light-bg);
+    }
+
+    .nav-links .menu-btn-mobile a {
+        display: inline-block; 
+        width: 85%;
+        padding: 14px 24px;
+        margin: 0 auto;
+    }
+
+    .nav-links .menu-btn-mobile a:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+    .hero-content h2 {
+        font-size: 36px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .sobre-container, .contato-grid {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .contato-info p {
+        justify-content: center;
+    }
+    
+    .redes-sociais {
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+
+    .contato-mapa iframe {
+        height: 350px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .form-container {
+        padding: 30px 20px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .card-agendamento-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .auth-container {
+        padding: 40px 25px;
+        width: 90%;
+    }
+}

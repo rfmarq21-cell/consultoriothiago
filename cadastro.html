@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | Dr. Thiago Salomão</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-body">
+
+    <div class="auth-container">
+        <div class="auth-header">
+            <a href="index.html" class="logo-link">
+                <h1>Dr. Thiago Salomão</h1>
+                <span>Clínica Médica & Nutrologia</span>
+            </a>
+            <h2>Crie sua conta</h2>
+            <p>Preencha seus dados para ter acesso ao sistema de agendamento.</p>
+        </div>
+
+        <!-- No futuro, o action apontará para processa_cadastro.php -->
+        <form action="login.html" method="POST" class="agendamento-form" id="form-cadastro">
+            <div class="form-group">
+                <label for="nome">Nome Completo *</label>
+                <input type="text" id="nome" name="nome" class="form-control" required placeholder="Ex: João da Silva">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" name="email" class="form-control" required placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="telefone">WhatsApp *</label>
+                    <input type="tel" id="telefone" name="telefone" class="form-control" maxlength="15" required placeholder="(19) 90000-0000">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="senha">Criar Senha *</label>
+                    <input type="password" id="senha" name="senha" class="form-control" minlength="6" required placeholder="Mínimo 6 caracteres">
+                </div>
+                <div class="form-group">
+                    <label for="confirma_senha">Confirmar Senha *</label>
+                    <input type="password" id="confirma_senha" name="confirma_senha" class="form-control" minlength="6" required placeholder="Repita sua senha">
+                    <span class="error-msg" id="erro-senha">As senhas não coincidem.</span>
+                </div>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="lgpd" name="lgpd" required>
+                <label for="lgpd">Autorizo o uso dos meus dados para agendamento e contato da clínica, conforme a LGPD *</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit">Finalizar Cadastro</button>
+        </form>
+
+        <div class="auth-footer">
+            <p>Já tem uma conta? <a href="login.html">Faça login aqui</a>.</p>
+            <p style="margin-top: 12px;"><a href="index.html" class="link-voltar"><i class="fas fa-arrow-left"></i> Voltar para a Página Inicial</a></p>
+        </div>
+    </div>
+
+    <script>
+        // 1. Máscara automática para WhatsApp: (XX) XXXXX-XXXX
+        const inputTelefone = document.getElementById('telefone');
+        inputTelefone.addEventListener('input', (e) => {
+            let valor = e.target.value.replace(/\D/g, '');
+            if (valor.length > 11) valor = valor.slice(0, 11);
+
+            if (valor.length > 10) {
+                valor = valor.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+            } else if (valor.length > 6) {
+                valor = valor.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+            } else if (valor.length > 2) {
+                valor = valor.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+            } else if (valor.length > 0) {
+                valor = valor.replace(/^(\d*)/, '($1');
+            }
+            e.target.value = valor;
+        });
+
+        // 2. Validação de igualdade de senhas antes do envio
+        const formCadastro = document.getElementById('form-cadastro');
+        const senha = document.getElementById('senha');
+        const confirmaSenha = document.getElementById('confirma_senha');
+        const erroSenha = document.getElementById('erro-senha');
+
+        function validarSenhas() {
+            if (confirmaSenha.value && senha.value !== confirmaSenha.value) {
+                confirmaSenha.classList.add('input-error');
+                erroSenha.classList.add('visivel');
+                return false;
+            } else {
+                confirmaSenha.classList.remove('input-error');
+                erroSenha.classList.remove('visivel');
+                return true;
+            }
+        }
+
+        confirmaSenha.addEventListener('input', validarSenhas);
+        senha.addEventListener('input', validarSenhas);
+
+        formCadastro.addEventListener('submit', (e) => {
+            if (!validarSenhas()) {
+                e.preventDefault();
+                confirmaSenha.focus();
+            }
+        });
+    </script>
+</body>
+</html>
